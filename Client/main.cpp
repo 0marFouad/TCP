@@ -13,13 +13,15 @@
 
 using namespace std;
 
-// Driver code
 int main() {
     int sip = 0;
     int port = 0;
     string filename;
     read_args(sip,port,filename);
     int sockfd = create_socket();
+    srand(5000);
     initiate_connection(8080,"numbers.txt",sockfd);
+
+
     return 0;
 }

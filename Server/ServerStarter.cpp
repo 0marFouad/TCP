@@ -35,7 +35,7 @@ std::ifstream::pos_type isFileExist(const char* filename){
     return in.tellg();
 }
 
-void accept(int sockfd){
+void accept(int sockfd, int seed, double plp){
     int n;
     struct data_packet filename_packet;
     struct sockaddr_in cliaddr;
@@ -54,15 +54,23 @@ void accept(int sockfd){
             data_packet ad = create_data_packet(vec,i);
             int cur_port = 8040;
             int new_socket = create_socket(cur_port);
-            sendto(new_socket, &ad, sizeof(ad), MSG_CONFIRM, (const struct sockaddr *) &cliaddr, sizeof(cliaddr));
+            ack_packet ack;
+            int tp = 0;
+            do{
+                send_packet(ad,new_socket,cliaddr,seed,plp);
+            }while(recv_packet(new_socket, ack, cliaddr, tp) < 0);
             //start communication
-            handle_client(fn, new_socket, cliaddr);
+            handle_client(fn, new_socket, cliaddr, seed, plp);
         }else{
             static const char arr[] = {'C','o','n','n','e','c','t','i','o','n',' ','R','e','f','u','s','e','d'};
             vector<char> vec (arr, arr+18);
             uint32_t i = 0;
             data_packet ad = create_data_packet(vec,i);
-            sendto(sockfd, &ad, sizeof(ad), MSG_CONFIRM, (const struct sockaddr *) &cliaddr, sizeof(cliaddr));
+            ack_packet ack;
+            int tp = 0;
+            do{
+                send_packet(ad,sockfd,cliaddr,seed,plp);
+            }while(recv_packet(sockfd, ack, cliaddr, tp) < 0);
         }
     }
 }

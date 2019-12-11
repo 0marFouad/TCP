@@ -96,22 +96,9 @@ CMakeFiles/Server.dir/Utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.dir/Utils.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fo2sh/CLionProjects/TCP_Protocol/Server/Utils.cpp -o CMakeFiles/Server.dir/Utils.cpp.s
 
-CMakeFiles/Server.dir/TCP.cpp.o: CMakeFiles/Server.dir/flags.make
-CMakeFiles/Server.dir/TCP.cpp.o: ../TCP.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fo2sh/CLionProjects/TCP_Protocol/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Server.dir/TCP.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Server.dir/TCP.cpp.o -c /home/fo2sh/CLionProjects/TCP_Protocol/Server/TCP.cpp
-
-CMakeFiles/Server.dir/TCP.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.dir/TCP.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fo2sh/CLionProjects/TCP_Protocol/Server/TCP.cpp > CMakeFiles/Server.dir/TCP.cpp.i
-
-CMakeFiles/Server.dir/TCP.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.dir/TCP.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fo2sh/CLionProjects/TCP_Protocol/Server/TCP.cpp -o CMakeFiles/Server.dir/TCP.cpp.s
-
 CMakeFiles/Server.dir/Timer.cpp.o: CMakeFiles/Server.dir/flags.make
 CMakeFiles/Server.dir/Timer.cpp.o: ../Timer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fo2sh/CLionProjects/TCP_Protocol/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Server.dir/Timer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fo2sh/CLionProjects/TCP_Protocol/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Server.dir/Timer.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Server.dir/Timer.cpp.o -c /home/fo2sh/CLionProjects/TCP_Protocol/Server/Timer.cpp
 
 CMakeFiles/Server.dir/Timer.cpp.i: cmake_force
@@ -124,7 +111,7 @@ CMakeFiles/Server.dir/Timer.cpp.s: cmake_force
 
 CMakeFiles/Server.dir/Server.cpp.o: CMakeFiles/Server.dir/flags.make
 CMakeFiles/Server.dir/Server.cpp.o: ../Server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fo2sh/CLionProjects/TCP_Protocol/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Server.dir/Server.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fo2sh/CLionProjects/TCP_Protocol/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Server.dir/Server.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Server.dir/Server.cpp.o -c /home/fo2sh/CLionProjects/TCP_Protocol/Server/Server.cpp
 
 CMakeFiles/Server.dir/Server.cpp.i: cmake_force
@@ -137,7 +124,7 @@ CMakeFiles/Server.dir/Server.cpp.s: cmake_force
 
 CMakeFiles/Server.dir/Packet.cpp.o: CMakeFiles/Server.dir/flags.make
 CMakeFiles/Server.dir/Packet.cpp.o: ../Packet.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fo2sh/CLionProjects/TCP_Protocol/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Server.dir/Packet.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fo2sh/CLionProjects/TCP_Protocol/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Server.dir/Packet.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Server.dir/Packet.cpp.o -c /home/fo2sh/CLionProjects/TCP_Protocol/Server/Packet.cpp
 
 CMakeFiles/Server.dir/Packet.cpp.i: cmake_force
@@ -153,7 +140,6 @@ Server_OBJECTS = \
 "CMakeFiles/Server.dir/main.cpp.o" \
 "CMakeFiles/Server.dir/ServerStarter.cpp.o" \
 "CMakeFiles/Server.dir/Utils.cpp.o" \
-"CMakeFiles/Server.dir/TCP.cpp.o" \
 "CMakeFiles/Server.dir/Timer.cpp.o" \
 "CMakeFiles/Server.dir/Server.cpp.o" \
 "CMakeFiles/Server.dir/Packet.cpp.o"
@@ -164,13 +150,12 @@ Server_EXTERNAL_OBJECTS =
 Server: CMakeFiles/Server.dir/main.cpp.o
 Server: CMakeFiles/Server.dir/ServerStarter.cpp.o
 Server: CMakeFiles/Server.dir/Utils.cpp.o
-Server: CMakeFiles/Server.dir/TCP.cpp.o
 Server: CMakeFiles/Server.dir/Timer.cpp.o
 Server: CMakeFiles/Server.dir/Server.cpp.o
 Server: CMakeFiles/Server.dir/Packet.cpp.o
 Server: CMakeFiles/Server.dir/build.make
 Server: CMakeFiles/Server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fo2sh/CLionProjects/TCP_Protocol/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable Server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fo2sh/CLionProjects/TCP_Protocol/Server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

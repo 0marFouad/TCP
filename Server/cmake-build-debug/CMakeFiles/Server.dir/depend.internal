@@ -17,14 +17,6 @@ CMakeFiles/Server.dir/ServerStarter.cpp.o
  /home/fo2sh/CLionProjects/TCP_Protocol/Server/ServerStarter.h
  /home/fo2sh/CLionProjects/TCP_Protocol/Server/Timer.h
  /home/fo2sh/CLionProjects/TCP_Protocol/Server/Utils.h
-CMakeFiles/Server.dir/TCP.cpp.o
- /home/fo2sh/CLionProjects/TCP_Protocol/Server/Packet.h
- /home/fo2sh/CLionProjects/TCP_Protocol/Server/Server.h
- /home/fo2sh/CLionProjects/TCP_Protocol/Server/ServerStarter.h
- /home/fo2sh/CLionProjects/TCP_Protocol/Server/TCP.cpp
- /home/fo2sh/CLionProjects/TCP_Protocol/Server/TCP.h
- /home/fo2sh/CLionProjects/TCP_Protocol/Server/Timer.h
- /home/fo2sh/CLionProjects/TCP_Protocol/Server/Utils.h
 CMakeFiles/Server.dir/Timer.cpp.o
  /home/fo2sh/CLionProjects/TCP_Protocol/Server/Timer.cpp
  /home/fo2sh/CLionProjects/TCP_Protocol/Server/Timer.h

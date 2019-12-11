@@ -17,14 +17,6 @@ CMakeFiles/Server.dir/ServerStarter.cpp.o: ../ServerStarter.h
 CMakeFiles/Server.dir/ServerStarter.cpp.o: ../Timer.h
 CMakeFiles/Server.dir/ServerStarter.cpp.o: ../Utils.h
 
-CMakeFiles/Server.dir/TCP.cpp.o: ../Packet.h
-CMakeFiles/Server.dir/TCP.cpp.o: ../Server.h
-CMakeFiles/Server.dir/TCP.cpp.o: ../ServerStarter.h
-CMakeFiles/Server.dir/TCP.cpp.o: ../TCP.cpp
-CMakeFiles/Server.dir/TCP.cpp.o: ../TCP.h
-CMakeFiles/Server.dir/TCP.cpp.o: ../Timer.h
-CMakeFiles/Server.dir/TCP.cpp.o: ../Utils.h
-
 CMakeFiles/Server.dir/Timer.cpp.o: ../Timer.cpp
 CMakeFiles/Server.dir/Timer.cpp.o: ../Timer.h
 

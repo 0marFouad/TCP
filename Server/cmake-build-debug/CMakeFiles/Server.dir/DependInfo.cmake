@@ -7,7 +7,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/fo2sh/CLionProjects/TCP_Protocol/Server/Packet.cpp" "/home/fo2sh/CLionProjects/TCP_Protocol/Server/cmake-build-debug/CMakeFiles/Server.dir/Packet.cpp.o"
   "/home/fo2sh/CLionProjects/TCP_Protocol/Server/Server.cpp" "/home/fo2sh/CLionProjects/TCP_Protocol/Server/cmake-build-debug/CMakeFiles/Server.dir/Server.cpp.o"
   "/home/fo2sh/CLionProjects/TCP_Protocol/Server/ServerStarter.cpp" "/home/fo2sh/CLionProjects/TCP_Protocol/Server/cmake-build-debug/CMakeFiles/Server.dir/ServerStarter.cpp.o"
-  "/home/fo2sh/CLionProjects/TCP_Protocol/Server/TCP.cpp" "/home/fo2sh/CLionProjects/TCP_Protocol/Server/cmake-build-debug/CMakeFiles/Server.dir/TCP.cpp.o"
   "/home/fo2sh/CLionProjects/TCP_Protocol/Server/Timer.cpp" "/home/fo2sh/CLionProjects/TCP_Protocol/Server/cmake-build-debug/CMakeFiles/Server.dir/Timer.cpp.o"
   "/home/fo2sh/CLionProjects/TCP_Protocol/Server/Utils.cpp" "/home/fo2sh/CLionProjects/TCP_Protocol/Server/cmake-build-debug/CMakeFiles/Server.dir/Utils.cpp.o"
   "/home/fo2sh/CLionProjects/TCP_Protocol/Server/main.cpp" "/home/fo2sh/CLionProjects/TCP_Protocol/Server/cmake-build-debug/CMakeFiles/Server.dir/main.cpp.o"

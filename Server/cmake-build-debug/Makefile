@@ -204,33 +204,6 @@ ServerStarter.cpp.s:
 	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/ServerStarter.cpp.s
 .PHONY : ServerStarter.cpp.s
 
-TCP.o: TCP.cpp.o
-
-.PHONY : TCP.o
-
-# target to build an object file
-TCP.cpp.o:
-	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/TCP.cpp.o
-.PHONY : TCP.cpp.o
-
-TCP.i: TCP.cpp.i
-
-.PHONY : TCP.i
-
-# target to preprocess a source file
-TCP.cpp.i:
-	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/TCP.cpp.i
-.PHONY : TCP.cpp.i
-
-TCP.s: TCP.cpp.s
-
-.PHONY : TCP.s
-
-# target to generate assembly for a file
-TCP.cpp.s:
-	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/TCP.cpp.s
-.PHONY : TCP.cpp.s
-
 Timer.o: Timer.cpp.o
 
 .PHONY : Timer.o
@@ -330,9 +303,6 @@ help:
 	@echo "... ServerStarter.o"
 	@echo "... ServerStarter.i"
 	@echo "... ServerStarter.s"
-	@echo "... TCP.o"
-	@echo "... TCP.i"
-	@echo "... TCP.s"
 	@echo "... Timer.o"
 	@echo "... Timer.i"
 	@echo "... Timer.s"
