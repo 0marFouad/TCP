@@ -18,17 +18,17 @@ void communicate(int num_of_segments, sockaddr_in servaddr, int client_socket, s
         struct data_packet data;
         memset(&data, 0, sizeof(data));
         unsigned int servAddrLen = sizeof(servaddr);
-        int n = recvfrom(client_socket, &data, sizeof(data), MSG_WAITALL, (struct sockaddr *) &servaddr, &servAddrLen);
+        int n = recvfrom(client_socket, &data, sizeof(data), 0, (struct sockaddr *) &servaddr, &servAddrLen);
         if(data.seq_no == waiting_for){
             printf("Received Sequence Number : %d\n",data.seq_no);
             ack_packet ack = create_ack_packet(data.seq_no);
-            sendto(client_socket, &ack, sizeof(ack), MSG_CONFIRM, (struct sockaddr *) &servaddr, sizeof(servaddr));
+            sendto(client_socket, &ack, sizeof(ack), 0, (struct sockaddr *) &servaddr, sizeof(servaddr));
             pq.push(data);
             waiting_for++;
         }else{
-            printf("Received Sequence Number : %d\n",waiting_for - 1);
+            printf("Received Sequence Number : %d Again\n",waiting_for - 1);
             ack_packet ack = create_ack_packet(waiting_for - 1);
-            sendto(client_socket, &ack, sizeof(ack), MSG_CONFIRM, (struct sockaddr *) &servaddr, sizeof(servaddr));
+            sendto(client_socket, &ack, sizeof(ack), 0, (struct sockaddr *) &servaddr, sizeof(servaddr));
         }
     }
     std::vector<char> file_vector;

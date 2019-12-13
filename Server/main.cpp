@@ -13,9 +13,9 @@
 int main() {
     int port = 8080;
     int seed = 90;
-    double plp = 0.2;
+    double plp = 0.15;
     srand(seed);
-    //read_args(port,seed,plp);
+    read_args(port,seed,plp);
     int sockfd = create_socket(port);
     accept(sockfd,seed,plp);
     return 0;

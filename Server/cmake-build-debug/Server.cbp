@@ -102,12 +102,6 @@
 		<Unit filename="/home/fo2sh/CLionProjects/TCP_Protocol/Server/ServerStarter.h">
 			<Option target="Server"/>
 		</Unit>
-		<Unit filename="/home/fo2sh/CLionProjects/TCP_Protocol/Server/Timer.cpp">
-			<Option target="Server"/>
-		</Unit>
-		<Unit filename="/home/fo2sh/CLionProjects/TCP_Protocol/Server/Timer.h">
-			<Option target="Server"/>
-		</Unit>
 		<Unit filename="/home/fo2sh/CLionProjects/TCP_Protocol/Server/Utils.cpp">
 			<Option target="Server"/>
 		</Unit>

@@ -15,6 +15,8 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <string>
+#include <thread>
+#include <mutex>
 #include "Server.h"
 #include "Packet.h"
 #include "Server.h"

@@ -1,3 +1,4 @@
+#include <cmath>
 #include "Server.h"
 
 data_packet create_packet(vector<char> v,uint32_t  &seq_no){
@@ -11,8 +12,11 @@ bool is_packet_loss(int seed, double plp){
 void send_packet(data_packet &packet, int socket, sockaddr_in &cur_addr, int seed, double plp){
     if(!is_packet_loss(seed, plp)){
         sendto(socket, &packet, sizeof(packet), 0, (const struct sockaddr *) &cur_addr, sizeof(cur_addr));
+        printf("--------------------\n");
+        printf("Packet %d Sent\n", packet.seq_no);
     }else{
-        printf("Packet Loss: %d\n",packet.seq_no);
+        printf("--------------------\n");
+        printf("Packet %d Not Sent\n", packet.seq_no);
     }
 }
 
@@ -29,11 +33,11 @@ int recv_packet(int new_socket, ack_packet &ack, sockaddr_in &cliaddr, int &time
 
 void handle_client(string fn, int new_socket, sockaddr_in new_addr, int seed, double plp) {
     //Initializing Server Data
-    bool isAcked[1024] = {false};
-    data_packet packets[1024];
+    bool isAcked[2048*4] = {false};
+    data_packet packets[2048*4];
     state st;
-    double cwnd = 1;
-    double ssthresh = 128;
+    double cwnd = 1.0;
+    double ssthresh = 20.0;
     uint32_t seq_no = 1;
     int dup_ack = 0;
 
@@ -48,7 +52,7 @@ void handle_client(string fn, int new_socket, sockaddr_in new_addr, int seed, do
     auto timer_start = std::chrono::high_resolution_clock::now();
     int time_passed = 0;
     while(!packets_queue.empty() || !window.empty()){
-        for(int i=window.size();i<cwnd && !packets_queue.empty();i++){
+        for(int i=window.size();i<floor(cwnd) && !packets_queue.empty();i++){
             data_packet to_be_sent = packets_queue.top();
             packets_queue.pop();
             send_packet(to_be_sent, new_socket, new_addr, seed, plp);
@@ -65,17 +69,32 @@ void handle_client(string fn, int new_socket, sockaddr_in new_addr, int seed, do
                 timer_start = std::chrono::high_resolution_clock::now();
             }
             if(st == SlowStart){
-                printf("Going to SlowStart\n");
+                printf("====================\n");
+                printf("cwnd = %f\n", cwnd);
+                printf("ssthresh = %f\n", ssthresh);
+                printf("dup_ack = %d\n", dup_ack);
                 data_packet x = window.top();
+                int nt1 = dup_ack;
                 slow_start(ack, isAcked, dup_ack, st, ssthresh, cwnd, x, new_addr, new_socket, seed, plp);
+                int nt2 = dup_ack;
             }else if(st == FastRecovery){
-                printf("Going to FastRecovery\n");
+                printf("====================\n");
+                printf("cwnd = %f\n", cwnd);
+                printf("ssthresh = %f\n", ssthresh);
+                printf("dup_ack = %d\n", dup_ack);
                 data_packet x = window.top();
+                int nt1 = dup_ack;
                 fast_recovery(ack, isAcked, dup_ack, st, ssthresh, cwnd, x, new_addr, new_socket, seed, plp);
+                int nt2 = dup_ack;
             }else{
-                printf("Going to Congestion Avoidance\n");
+                printf("====================\n");
+                printf("cwnd = %f\n", cwnd);
+                printf("ssthresh = %f\n", ssthresh);
+                printf("dup_ack = %d\n", dup_ack);
                 data_packet x = window.top();
+                int nt1 = dup_ack;
                 congestion_avoidance(ack, isAcked, dup_ack, st, ssthresh, cwnd, x, new_addr, new_socket,seed,plp);
+                int nt2 = dup_ack;
             }
             //empty window
             while(isAcked[window.top().seq_no] && !window.empty()){
@@ -83,15 +102,25 @@ void handle_client(string fn, int new_socket, sockaddr_in new_addr, int seed, do
                 timer_start = std::chrono::high_resolution_clock::now();
             }
             //fill window
-            while(window.size() <  (int) cwnd && !packets_queue.empty()){
+            while(window.size() <  floor(cwnd) && !packets_queue.empty()){
                 data_packet p = packets_queue.top();
                 packets_queue.pop();
                 send_packet(p, new_socket, new_addr, seed, plp);
                 window.push(p);
+                if(window.size() == 1){
+                    timer_start = std::chrono::high_resolution_clock::now();
+                }
             }
+            auto timer_end = std::chrono::high_resolution_clock::now();
+            time_passed = (int)std::chrono::duration_cast<std::chrono::microseconds>(timer_end - timer_start).count();
         }
         if(n < 0){
+            printf("====================\n");
+            printf("cwnd = %f\n", cwnd);
+            printf("ssthresh = %f\n", ssthresh);
+            printf("dup_ack = %d\n", dup_ack);
             data_packet x = window.top();
+            printf("Timeout Packet %d\n",x.seq_no);
             handle_timeout(x,cwnd,ssthresh,dup_ack,st,isAcked,packets,cliaddr,new_socket,seed,plp);
             timer_start = std::chrono::high_resolution_clock::now();
         }
@@ -99,64 +128,71 @@ void handle_client(string fn, int new_socket, sockaddr_in new_addr, int seed, do
 }
 
 void slow_start(ack_packet ack,bool isAcked[], int &dup_ack, state &st, double &ssthresh, double &cwnd, data_packet missing_packet, sockaddr_in new_addr, int socket, int seed, double plp){
+    printf("Enter -> Slow Start\n");
     if(isAcked[ack.ack_no]){
+        printf("Duplicate Ack Detected %d\n",ack.ack_no);
         dup_ack++;
         if(dup_ack == 3){
+            printf("3 Duplicates Detected %d\n",ack.ack_no);
             dup_ack = 0;
             st = FastRecovery;
-            ssthresh = cwnd/2;
-            cwnd = ssthresh + 3;
-            printf("Window Size: %f\n",cwnd);
+            ssthresh = cwnd/2.0;
+            cwnd = ssthresh + 3.0;
             send_packet(missing_packet, socket, new_addr, seed, plp);
         }
     }else{
-        cwnd += 1;
-        printf("Window Size: %f\n",cwnd);
+        printf("New Ack %d\n",ack.ack_no);
+        cwnd = cwnd + 1.0;
         dup_ack = 0;
         if(cwnd >= ssthresh){
             st = CongestionAvoidance;
         }
     }
     isAcked[ack.ack_no] = true;
+    printf("Leave -> Slow Start\n");
 }
 
 void congestion_avoidance(ack_packet ack,bool isAcked[], int &dup_ack, state &st, double &ssthresh, double &cwnd, data_packet missing_packet, sockaddr_in new_addr, int socket, int seed, double plp){
+    printf("Enter -> Congestion Avoidance\n");
     if(isAcked[ack.ack_no]){
+        printf("Duplicate Ack Detected %d\n",ack.ack_no);
         dup_ack++;
         if(dup_ack == 3){
+            printf("3 Duplicates Detected %d\n",ack.ack_no);
             dup_ack = 0;
             st = FastRecovery;
-            ssthresh = cwnd/2;
-            cwnd = ssthresh + 3;
-            printf("Window Size: %f\n",cwnd);
+            ssthresh = cwnd/2.0;
+            cwnd = ssthresh + 3.0;
             send_packet(missing_packet, socket, new_addr, seed, plp);
         }
     }else{
-        cwnd += 1/cwnd;
-        printf("Window Size: %f\n",cwnd);
+        printf("New Ack %d\n",ack.ack_no);
+        cwnd += (1.0/cwnd);
         dup_ack = 0;
     }
     isAcked[ack.ack_no] = true;
+    printf("Leave -> Congestion Avoidance\n");
 }
 
 void fast_recovery(ack_packet ack,bool isAcked[], int &dup_ack, state &st, double &ssthresh, double &cwnd, data_packet missing_packet, sockaddr_in new_addr, int socket, int seed, double plp){
+    printf("Enter -> Fast Recovery\n");
     if(isAcked[ack.ack_no]){
-        cwnd += 1;
-        send_packet(missing_packet, socket, new_addr, seed, plp);
-        printf("Window Size: %f\n",cwnd);
+        printf("Duplicate Ack Detected %d\n",ack.ack_no);
+        cwnd += 1.0;
+        //send_packet(missing_packet, socket, new_addr, seed, plp);
     }else{
+        printf("New Ack %d\n",ack.ack_no);
         cwnd = ssthresh;
-        printf("Window Size: %f\n",cwnd);
         dup_ack = 0;
         st = CongestionAvoidance;
     }
     isAcked[ack.ack_no] = true;
+    printf("Leave -> Fast Recovery\n");
 }
 
 void handle_timeout(data_packet missing_packet,double &cwnd, double &ssthresh, int &dup_ack, state &st, bool isAcked[], data_packet packets[], sockaddr_in new_addr, int new_socket, int seed, double plp){
-    ssthresh = cwnd/2;
-    cwnd = 1;
-    printf("Window Size: %f\n",cwnd);
+    ssthresh = cwnd/2.0;
+    cwnd = 1.0;
     dup_ack = 0;
     st = SlowStart;
     send_packet(missing_packet, new_socket, new_addr, seed, plp);

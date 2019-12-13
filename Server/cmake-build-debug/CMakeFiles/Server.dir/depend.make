@@ -7,18 +7,13 @@ CMakeFiles/Server.dir/Packet.cpp.o: ../Packet.h
 CMakeFiles/Server.dir/Server.cpp.o: ../Packet.h
 CMakeFiles/Server.dir/Server.cpp.o: ../Server.cpp
 CMakeFiles/Server.dir/Server.cpp.o: ../Server.h
-CMakeFiles/Server.dir/Server.cpp.o: ../Timer.h
 CMakeFiles/Server.dir/Server.cpp.o: ../Utils.h
 
 CMakeFiles/Server.dir/ServerStarter.cpp.o: ../Packet.h
 CMakeFiles/Server.dir/ServerStarter.cpp.o: ../Server.h
 CMakeFiles/Server.dir/ServerStarter.cpp.o: ../ServerStarter.cpp
 CMakeFiles/Server.dir/ServerStarter.cpp.o: ../ServerStarter.h
-CMakeFiles/Server.dir/ServerStarter.cpp.o: ../Timer.h
 CMakeFiles/Server.dir/ServerStarter.cpp.o: ../Utils.h
-
-CMakeFiles/Server.dir/Timer.cpp.o: ../Timer.cpp
-CMakeFiles/Server.dir/Timer.cpp.o: ../Timer.h
 
 CMakeFiles/Server.dir/Utils.cpp.o: ../Utils.cpp
 CMakeFiles/Server.dir/Utils.cpp.o: ../Utils.h
@@ -26,7 +21,6 @@ CMakeFiles/Server.dir/Utils.cpp.o: ../Utils.h
 CMakeFiles/Server.dir/main.cpp.o: ../Packet.h
 CMakeFiles/Server.dir/main.cpp.o: ../Server.h
 CMakeFiles/Server.dir/main.cpp.o: ../ServerStarter.h
-CMakeFiles/Server.dir/main.cpp.o: ../Timer.h
 CMakeFiles/Server.dir/main.cpp.o: ../Utils.h
 CMakeFiles/Server.dir/main.cpp.o: ../main.cpp
 
